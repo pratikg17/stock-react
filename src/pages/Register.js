@@ -28,11 +28,24 @@ function Register() {
           >
             <h1>Register</h1>
             <Form.Item
+              name="firstName"
+              label="First Name"
+              rules={[{ required: true }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item name="lastName" label="Last Name">
+              <Input />
+            </Form.Item>
+            <Form.Item
               name="username"
               label="Username"
               rules={[{ required: true }]}
             >
               <Input />
+            </Form.Item>
+            <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+              <Input type="email" />
             </Form.Item>
             <Form.Item
               name="password"
@@ -43,9 +56,26 @@ function Register() {
             </Form.Item>
 
             <Form.Item
-              name="cpassword"
+              name="confirm"
               label="Confirm Password"
-              rules={[{ required: true }]}
+              dependencies={["password"]}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: "Please confirm your password!",
+                },
+                ({ getFieldValue }) => ({
+                  validator(rule, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      "The two passwords that you entered do not match!"
+                    );
+                  },
+                }),
+              ]}
             >
               <Input type="password" />
             </Form.Item>
