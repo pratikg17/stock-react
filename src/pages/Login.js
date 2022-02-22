@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Input, Form } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../redux/actions/userActions";
 
 function Login() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("admin");
+    console.log("this", isAuthenticated);
+    if (isAuthenticated) {
+      history.push("/");
+    }
+  });
 
   function onFinish(values) {
     dispatch(userLogin(values));

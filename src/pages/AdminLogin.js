@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Input, Form } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adminLogin } from "../redux/actions/userActions";
 
 function AdminLogin() {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   function onFinish(values) {
     dispatch(adminLogin(values));
     console.log(values);
   }
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("admin");
+    if (isAuthenticated) {
+      history.push("/admin-home");
+    }
+  });
+
   return (
     <div className="login">
       <Row gutter={16} className="d-flex align-items-center">

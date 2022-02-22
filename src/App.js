@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "antd/dist/antd.css";
 import "./App.css";
 import { Route, BrowserRouter, Redirect } from "react-router-dom";
@@ -53,12 +52,6 @@ function App() {
 export default App;
 
 export function ProtectedRoute({ component: Component, ...restOfProps }) {
-  // console.log("ProtectedRoute ROUTE");
-  // if (localStorage.getItem("user")) {
-  //   return <Route {...props} />;
-  // } else {
-  //   return <Redirect to="/admin" />;
-  // }
   const isAuthenticated = localStorage.getItem("user");
   console.log("this", isAuthenticated);
   return (
