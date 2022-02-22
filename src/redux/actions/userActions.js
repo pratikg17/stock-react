@@ -40,7 +40,7 @@ export const adminLogin = (reqObj) => async (dispatch) => {
     message.success("Login success");
     dispatch({ type: "LOADING", payload: false });
     setTimeout(() => {
-      window.location.href = "/admin-landing";
+      window.location.href = "/admin-home";
     }, 500);
   } catch (error) {
     console.log(error);

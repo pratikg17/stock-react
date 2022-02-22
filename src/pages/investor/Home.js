@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import DefaultLayout from "../components/DefaultLayout";
+import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCars } from "../redux/actions/carsActions";
+import { getAllCars } from "../../redux/actions/carsActions";
 import { Button, Row, Col } from "antd";
-import Spinner from "../components/Spinner";
+import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
 
 function Home() {

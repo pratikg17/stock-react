@@ -2,19 +2,26 @@ import React from "react";
 import { Menu, Dropdown, Button, Space, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 
-function DefaultLayout(props) {
-  const user = JSON.parse(localStorage.getItem("user"));
+function AdminLayout(props) {
+  const admin = JSON.parse(localStorage.getItem("admin"));
   const menu = (
     <Menu>
-      <Menu.Item>
-        <Link to="/">Home</Link>
+      <Menu.Item key="admin">
+        <Link to="/admin-home">Home</Link>
       </Menu.Item>
-      <Menu.Item>
-        <Link to="/wallet">Wallet</Link>
+      <Menu.Item key="admin-stocks">
+        <Link to="/add-stocks">Stocks</Link>
+      </Menu.Item>
+      <Menu.Item key="admin-hours">
+        <Link to="/market-hours">Market Hours</Link>
+      </Menu.Item>
+      <Menu.Item key="admin-holidays">
+        <Link to="/market-holidays">Market Holidays</Link>
       </Menu.Item>
       <Menu.Item
         onClick={() => {
           localStorage.removeItem("user");
+          localStorage.removeItem("admin");
           localStorage.removeItem("token");
           window.location.href = "/login";
         }}
@@ -31,7 +38,7 @@ function DefaultLayout(props) {
             <div className="d-flex justify-content-between">
               <h1>Stockverse</h1>
               <Dropdown overlay={menu} placement="bottomCenter">
-                <Button>{user.username}</Button>
+                <Button>{admin.username}</Button>
               </Dropdown>
             </div>
           </Col>
@@ -42,4 +49,4 @@ function DefaultLayout(props) {
   );
 }
 
-export default DefaultLayout;
+export default AdminLayout;
