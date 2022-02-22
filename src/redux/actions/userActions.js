@@ -22,7 +22,7 @@ export const userRegister = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    const response = await axios.post("/api/users/register", reqObj);
+    const response = await axios.post("/api/v1/users/", reqObj);
     message.success("Registration Sucessfull");
     setTimeout(() => {
       window.location.href = "/login";

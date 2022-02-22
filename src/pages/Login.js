@@ -15,7 +15,7 @@ function Login() {
     <div className="login">
       <Row gutter={16} className="d-flex align-items-center">
         <Col lg={16} style={{ position: "relative" }}>
-          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&"></img>
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"></img>
           <h1 className="login-logo">Stockverse</h1>
         </Col>
         <Col lg={8} className="text-left p-5">
