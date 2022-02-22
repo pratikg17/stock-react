@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AdminLayout from "../../components/AdminLayout";
+import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Divider, DatePicker, Checkbox, Edit } from "antd";
+import { getAllStocks } from "../../redux/actions/stocksActions";
+
 import { Link } from "react-router-dom";
 function AdminHome() {
+  const dispatch = useDispatch();
+  const { stocks } = useSelector((state) => state.stocksReducer);
+
+  useEffect(() => {
+    dispatch(getAllStocks());
+  }, []);
   return (
     <AdminLayout>
       <Row justify="center" gutter={16} className="mt-2">
