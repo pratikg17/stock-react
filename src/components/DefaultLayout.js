@@ -17,6 +17,7 @@ function DefaultLayout(props) {
       <Menu.Item
         onClick={() => {
           localStorage.removeItem("user");
+          localStorage.removeItem("token");
           window.location.href = "/login";
         }}
       >

@@ -26,7 +26,7 @@ function Login() {
           >
             <h1>Login</h1>
             <Form.Item
-              name="username"
+              name="userName"
               label="Username"
               rules={[{ required: true }]}
             >

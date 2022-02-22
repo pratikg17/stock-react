@@ -1,12 +1,18 @@
 import axios from "axios";
 import { message } from "antd";
-
+import jwt from "jwt-decode";
 export const userLogin = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    const response = await axios.post("/api/users/login", reqObj);
-    localStorage.setItem("user", JSON.stringify(response.data));
+    const response = await axios.post("/api/v1/users/investor-login", reqObj);
+
+    const jwtToken = response.data.token;
+    const decodedJwt = jwt(jwtToken);
+
+    localStorage.setItem("token", jwtToken);
+
+    localStorage.setItem("user", JSON.stringify(decodedJwt));
     message.success("Login success");
     dispatch({ type: "LOADING", payload: false });
     setTimeout(() => {
