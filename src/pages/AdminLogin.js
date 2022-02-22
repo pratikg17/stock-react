@@ -2,13 +2,13 @@ import React from "react";
 import { Row, Col, Input, Form } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../redux/actions/userActions";
+import { adminLogin } from "../redux/actions/userActions";
 
-function Login() {
+function AdminLogin() {
   const dispatch = useDispatch();
 
   function onFinish(values) {
-    dispatch(userLogin(values));
+    dispatch(adminLogin(values));
     console.log(values);
   }
   return (
@@ -16,7 +16,7 @@ function Login() {
       <Row gutter={16} className="d-flex align-items-center">
         <Col lg={16} style={{ position: "relative" }}>
           <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"></img>
-          <h1 className="login-logo">Stockverse</h1>
+          <h1 className="login-logo">Stockverse - Admin</h1>
         </Col>
         <Col lg={8} className="text-left p-5">
           <Form
@@ -42,9 +42,7 @@ function Login() {
 
             <button className="btn1 mt-2 ">Login </button>
             <hr />
-            <Link to="/register">Click here to Register</Link>
-            <hr />
-            <Link to="/admin">Admin Login</Link>
+            <Link to="/login">Click here for Investor Login</Link>
           </Form>
         </Col>
       </Row>
@@ -52,4 +50,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AdminLogin;

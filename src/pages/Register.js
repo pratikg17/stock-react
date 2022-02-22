@@ -93,6 +93,8 @@ function Register() {
             <hr />
 
             <Link to="/login">Click here to Login</Link>
+            <hr />
+            <Link to="/admin">Admin Login</Link>
           </Form>
         </Col>
       </Row>
