@@ -8,6 +8,7 @@ import Home from "./pages/investor/Home";
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
+import EditStock from "./pages/admin/EditStock";
 import MarketHoliday from "./pages/admin/MarketHoliday";
 import MarketHours from "./pages/admin/MarketHours";
 function App() {
@@ -24,6 +25,12 @@ function App() {
           exact
           component={AddStock}
         ></AdminProtectedRoute>
+        <AdminProtectedRoute
+          path="/edit-stocks/:stockid"
+          exact
+          component={EditStock}
+        ></AdminProtectedRoute>
+
         <AdminProtectedRoute
           path="/market-hours"
           exact
