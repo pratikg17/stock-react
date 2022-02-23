@@ -11,6 +11,7 @@ import AddStock from "./pages/admin/AddStock";
 import EditStock from "./pages/admin/EditStock";
 import MarketHoliday from "./pages/admin/MarketHoliday";
 import MarketHours from "./pages/admin/MarketHours";
+
 function App() {
   return (
     <div className="App">

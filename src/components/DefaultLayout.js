@@ -9,7 +9,7 @@ function DefaultLayout(props) {
       <Menu.Item>
         <Link to="/">Home</Link>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="wallet">
         <Link to="/wallet">Wallet</Link>
       </Menu.Item>
       <Menu.Item

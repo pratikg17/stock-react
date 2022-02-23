@@ -37,10 +37,15 @@ p {
 .btn1 {
   box-shadow: none !important;
   background-color: white !important;
-  color: orangered;
+  color: orangered !important;
   border: 1px solid orangered;
   padding: 5px !important;
   outline: none !important;
+}
+
+.btn1 a{
+  color: orangered !important;
+  background-color: white;
 }
 
 
