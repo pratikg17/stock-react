@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../components/AdminLayout";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Col,
-  Row,
-  Divider,
-  DatePicker,
-  Checkbox,
-  Edit,
-  Table,
-  Tag,
-  Button,
-  Space,
-} from "antd";
+import { Col, Row, Table, Button, Space } from "antd";
 import { getAllStocks } from "../../redux/actions/stocksActions";
 
 import { Link } from "react-router-dom";

@@ -1,22 +1,9 @@
 import React from "react";
 import AdminLayout from "../../components/AdminLayout";
-import {
-  Col,
-  Row,
-  Divider,
-  DatePicker,
-  Checkbox,
-  Edit,
-  Form,
-  Input,
-  InputNumber,
-} from "antd";
-import { Link } from "react-router-dom";
+import { Col, Row, Form, Input } from "antd";
 import Spinner from "../../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { addStock } from "../../redux/actions/stocksActions";
-
-// import { addCar } from "../redux/actions/carsActions";
 
 function AddStock() {
   const dispatch = useDispatch();

@@ -10,7 +10,7 @@ function AdminLayout(props) {
         <Link to="/admin-home">Home</Link>
       </Menu.Item>
       <Menu.Item key="admin-stocks">
-        <Link to="/add-stocks">Stocks</Link>
+        <Link to="/add-stocks">Add Stocks</Link>
       </Menu.Item>
       <Menu.Item key="admin-hours">
         <Link to="/market-hours">Market Hours</Link>
