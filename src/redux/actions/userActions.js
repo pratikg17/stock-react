@@ -121,3 +121,33 @@ export const getUserWalletHistory = () => async (dispatch) => {
     dispatch({ type: "LOADING", payload: true });
   }
 };
+
+export const addInvestorFunds = (data) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  try {
+    let reqObj = {
+      ...data,
+      userId: user,
+    };
+    console.log(reqObj);
+    const response = await axios.post(
+      "/api/v1/users/add-investor-funds",
+      reqObj,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+      }
+    );
+    message.success("Funds added  successfully");
+    setTimeout(() => {
+      window.location.href = "/wallet";
+    }, 500);
+  } catch (error) {
+    console.log(error);
+    message.error("Something went wrong");
+    dispatch({ type: "LOADING", payload: true });
+  }
+};

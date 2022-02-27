@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import AdminLogin from "./pages/AdminLogin";
 import Home from "./pages/investor/Home";
 import WalletHistory from "./pages/investor/WalletHistory";
+import AddFunds from "./pages/investor/AddFunds";
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
@@ -57,6 +58,11 @@ function App() {
           path="/wallet"
           exact
           component={WalletHistory}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/add-funds"
+          exact
+          component={AddFunds}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>
