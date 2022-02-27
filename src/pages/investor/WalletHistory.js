@@ -90,7 +90,12 @@ function WalletHistory() {
         </Col>
         <Space></Space>
         <Col lg={20} sm={24}>
-          <Table dataSource={walletHistory} columns={columns} />;
+          <Table
+            dataSource={walletHistory}
+            columns={columns}
+            pagination={false}
+          />
+          ;
         </Col>
       </Row>
     </DefaultLayout>
