@@ -7,7 +7,7 @@ export const ordersReducer = (state = initialData, action) => {
     case "GET_ALL_USER_ORDERS":
       return {
         ...state,
-        cars: action.payload,
+        orders: action.payload,
       };
     default:
       return state;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Space, Tag } from "antd";
-import { getAllStocks } from "../../redux/actions/stocksActions";
 import {
   getUserBalance,
   getUserWalletHistory,
@@ -12,17 +11,11 @@ import Moment from "react-moment";
 import { Link } from "react-router-dom";
 function WalletHistory() {
   const dispatch = useDispatch();
-  const { stocks } = useSelector((state) => state.stocksReducer);
   const { walletBalance, walletHistory } = useSelector(
     (state) => state.userReducer
   );
-  const [totalStocks, setTotalStocks] = useState([]);
   const [walletHistoryTxn, setWalletHistoryTxn] = useState([]);
   const [totalWalletBalance, setTotalWalletBalance] = useState([]);
-
-  useEffect(() => {
-    setTotalStocks(stocks);
-  }, [stocks]);
 
   useEffect(() => {
     setTotalWalletBalance(totalWalletBalance);
@@ -63,16 +56,11 @@ function WalletHistory() {
       title: "Type",
       dataIndex: "transaction_type",
       key: "transaction_type",
-      render: (text) => (
-        // <Space size="middle">
-        <Tag color="red">{text}</Tag>
-        // </Space>
-      ),
+      render: (text) => <Tag color="red">{text}</Tag>,
     },
   ];
 
   useEffect(() => {
-    dispatch(getAllStocks());
     dispatch(getUserWalletHistory());
     dispatch(getUserBalance());
   }, []);

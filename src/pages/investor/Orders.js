@@ -2,107 +2,106 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Space, Tag } from "antd";
-import { getAllStocks } from "../../redux/actions/stocksActions";
-import {
-  getUserBalance,
-  getUserWalletHistory,
-} from "../../redux/actions/userActions";
+import { getAllOrdersByUser } from "../../redux/actions/ordersActions";
 import Moment from "react-moment";
 
 import { Link } from "react-router-dom";
 function Orders() {
   const dispatch = useDispatch();
-  const { stocks } = useSelector((state) => state.stocksReducer);
-  const { walletBalance, walletHistory } = useSelector(
-    (state) => state.userReducer
-  );
-  const [totalStocks, setTotalStocks] = useState([]);
-  const [walletHistoryTxn, setWalletHistoryTxn] = useState([]);
-  const [totalWalletBalance, setTotalWalletBalance] = useState([]);
+  const { orders } = useSelector((state) => state.ordersReducer);
+
+  const [totalOrders, setTotalOrders] = useState([]);
 
   useEffect(() => {
-    setTotalStocks(stocks);
-  }, [stocks]);
-
-  useEffect(() => {
-    setTotalWalletBalance(totalWalletBalance);
-  }, [totalWalletBalance]);
-
-  useEffect(() => {
-    setWalletHistoryTxn(walletHistoryTxn);
-  }, [walletHistoryTxn]);
+    setTotalOrders(orders);
+  }, [orders]);
 
   const columns = [
     {
-      title: "Date",
-      dataIndex: "trasactiondate",
+      title: "Order Date",
+      dataIndex: "created_at",
       render: (text) => <Moment format="MMM Do YYYY, h:mm:ss a">{text}</Moment>,
     },
     {
-      title: "Note",
-      dataIndex: "description",
-      key: "description",
+      title: "Stock",
+      dataIndex: "tickerName",
+      key: "tickerName",
+    },
+    {
+      title: "Fulfilled Quantity",
+      dataIndex: "fulfilledQuantity",
+      key: "fulfilledQuantity",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
     },
 
     {
-      title: "Amount",
-      dataIndex: "credit_amount",
-      key: "credit_amount",
+      title: "Price",
       render: (text, record) => (
         <Space size="middle">
-          {record.transaction_type == "CREDIT" ? (
-            <div style={{ color: "green" }}>{"+$" + record.credit_amount}</div>
+          {record.orderType == "MARKET" ? (
+            <div style={{ textDecoration: "line-through" }}>
+              {"$" + record.amount}
+            </div>
           ) : (
-            <div style={{ color: "red" }}>{"-$" + record.debit_amount}</div>
+            <div>{"$" + record.amount}</div>
           )}
         </Space>
       ),
     },
 
     {
-      title: "Type",
-      dataIndex: "transaction_type",
-      key: "transaction_type",
-      render: (text) => (
-        // <Space size="middle">
-        <Tag color="red">{text}</Tag>
-        // </Space>
+      title: "Order Type",
+      dataIndex: "orderType",
+      key: "orderType",
+      render: (text, record) => (
+        <Space size="middle">
+          {record.orderType == "MARKET" ? (
+            <Tag color="blue">{text}</Tag>
+          ) : (
+            <Tag color="purple">{text}</Tag>
+          )}
+        </Space>
+      ),
+    },
+    {
+      title: "Trade Type",
+      dataIndex: "tradeType",
+      key: "tradeType",
+      render: (text, record) => (
+        <Space size="middle">
+          {record.tradeType == "BUY" ? (
+            <Tag color="green">{text}</Tag>
+          ) : (
+            <Tag color="red">{text}</Tag>
+          )}
+        </Space>
       ),
     },
   ];
 
   useEffect(() => {
-    dispatch(getAllStocks());
-    dispatch(getUserWalletHistory());
-    dispatch(getUserBalance());
+    dispatch(getAllOrdersByUser());
   }, []);
   return (
     <DefaultLayout>
       <Row justify="center" gutter={16} className="mt-4">
         <Col lg={20} sm={24}>
           <div className="d-flex justify-content-between align-items-center">
-            <h3 className="mt-1 mr-2">Investor Wallet</h3>
-            <div className="btn1"> Available Funds ${walletBalance}</div>
+            <h3 className="mt-1 mr-2">Investor Orders</h3>
             <div className="d-flex justify-content-between align-items-center">
-              <Space size="small">
-                <button className="btn1">
-                  <Link to={`/add-funds/`}>Add Funds</Link>
-                </button>
-                <button className="btn1">
-                  <Link to={`/withdraw-funds/`}>Withdraw Funds</Link>
-                </button>
-              </Space>
+              <button className="btn1">
+                <Link to={`/add-orders/`}>Add Orders</Link>
+              </button>
             </div>
           </div>
         </Col>
         <Space></Space>
         <Col lg={20} sm={24}>
-          <Table
-            dataSource={walletHistory}
-            columns={columns}
-            pagination={false}
-          />
-          ;
+          <Table dataSource={orders} columns={columns} pagination={false} />;
         </Col>
       </Row>
     </DefaultLayout>
