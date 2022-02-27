@@ -11,7 +11,6 @@ function AddStock() {
 
   function onFinish(values) {
     dispatch(addStock(values));
-    console.log(values);
   }
   return (
     <DefaultLayout>
@@ -50,7 +49,6 @@ function AddStock() {
               ]}
             >
               <Input type="number" addonAfter="$" />
-              {/* <InputNumber addonBefore="+" addonAfter="$" defaultValue={100} /> */}
             </Form.Item>
 
             <div className="text-right">
