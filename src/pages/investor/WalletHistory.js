@@ -83,9 +83,16 @@ function WalletHistory() {
           <div className="d-flex justify-content-between align-items-center">
             <h3 className="mt-1 mr-2">Investor Wallet</h3>
             <div className="btn1"> Available Funds ${walletBalance}</div>
-            <button className="btn1">
-              <Link to={`/add-funds/`}>Add Funds</Link>
-            </button>
+            <div className="d-flex justify-content-between align-items-center">
+              <Space size="small">
+                <button className="btn1">
+                  <Link to={`/add-funds/`}>Add Funds</Link>
+                </button>
+                <button className="btn1">
+                  <Link to={`/withdraw-funds/`}>Withdraw Funds</Link>
+                </button>
+              </Space>
+            </div>
           </div>
         </Col>
         <Space></Space>

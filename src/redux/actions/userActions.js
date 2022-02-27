@@ -151,3 +151,35 @@ export const addInvestorFunds = (data) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: true });
   }
 };
+
+export const withdrawInvestorFunds = (data) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  try {
+    let reqObj = {
+      ...data,
+      userId: user,
+    };
+    console.log(reqObj);
+    const response = await axios.post(
+      "/api/v1/users/withdraw-investor-funds",
+      reqObj,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+      }
+    );
+    message.success("Funds added  successfully");
+    setTimeout(() => {
+      window.location.href = "/wallet";
+    }, 500);
+  } catch (error) {
+    message.error(error.response.data.message);
+    dispatch({ type: "LOADING", payload: true });
+    setTimeout(() => {
+      window.location.href = "/wallet";
+    }, 500);
+  }
+};
