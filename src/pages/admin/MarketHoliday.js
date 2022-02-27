@@ -1,11 +1,11 @@
 import React from "react";
-import AdminLayout from "../../components/AdminLayout";
+import DefaultLayout from "../../components/DefaultLayout";
 
 function MarketHoliday() {
   return (
-    <AdminLayout>
+    <DefaultLayout>
       <div>MarketHoliday</div>
-    </AdminLayout>
+    </DefaultLayout>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import AdminLayout from "../../components/AdminLayout";
+import DefaultLayout from "../../components/DefaultLayout";
 import { Col, Row, Form, Input } from "antd";
 import Spinner from "../../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ function AddStock() {
     console.log(values);
   }
   return (
-    <AdminLayout>
+    <DefaultLayout>
       {loading && <Spinner />}
       <Row justify="center mt-5">
         <Col lg={12} sm={24} xs={24} className="p-2">
@@ -59,7 +59,7 @@ function AddStock() {
           </Form>
         </Col>
       </Row>
-    </AdminLayout>
+    </DefaultLayout>
   );
 }
 

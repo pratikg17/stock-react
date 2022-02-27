@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AdminLayout from "../../components/AdminLayout";
+import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Button, Space } from "antd";
 import { getAllStocks } from "../../redux/actions/stocksActions";
@@ -55,7 +55,7 @@ function AdminHome() {
     dispatch(getAllStocks());
   }, []);
   return (
-    <AdminLayout>
+    <DefaultLayout>
       <Row justify="center" gutter={16} className="mt-4">
         <Col lg={20} sm={24}>
           <div className="d-flex justify-content-between align-items-center">
@@ -70,7 +70,7 @@ function AdminHome() {
           <Table dataSource={totalStocks} columns={columns} />;
         </Col>
       </Row>
-    </AdminLayout>
+    </DefaultLayout>
   );
 }
 

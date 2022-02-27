@@ -36,7 +36,7 @@ export const adminLogin = (reqObj) => async (dispatch) => {
 
     localStorage.setItem("token", jwtToken);
 
-    localStorage.setItem("admin", JSON.stringify(decodedJwt));
+    localStorage.setItem("user", JSON.stringify(decodedJwt));
     message.success("Login success");
     dispatch({ type: "LOADING", payload: false });
     setTimeout(() => {

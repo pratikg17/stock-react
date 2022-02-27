@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminLogin from "./pages/AdminLogin";
 import Home from "./pages/investor/Home";
+import AddFunds from "./pages/investor/AddFunds";
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
@@ -16,32 +17,32 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <AdminProtectedRoute
+        <ProtectedRoute
           path="/admin-home"
           component={AdminHome}
           exact
-        ></AdminProtectedRoute>
-        <AdminProtectedRoute
+        ></ProtectedRoute>
+        <ProtectedRoute
           path="/add-stocks"
           exact
           component={AddStock}
-        ></AdminProtectedRoute>
-        <AdminProtectedRoute
+        ></ProtectedRoute>
+        <ProtectedRoute
           path="/edit-stocks/:stockid"
           exact
           component={EditStock}
-        ></AdminProtectedRoute>
+        ></ProtectedRoute>
 
-        <AdminProtectedRoute
+        <ProtectedRoute
           path="/market-hours"
           exact
           component={MarketHours}
-        ></AdminProtectedRoute>
-        <AdminProtectedRoute
+        ></ProtectedRoute>
+        <ProtectedRoute
           path="/market-holidays"
           exact
           component={MarketHoliday}
-        ></AdminProtectedRoute>
+        ></ProtectedRoute>
         <ProtectedRoute
           path="/booking/:carid"
           exact
@@ -52,6 +53,11 @@ function App() {
 
         <Route path="/register" exact component={Register}></Route>
         <ProtectedRoute path="/" exact component={Home}></ProtectedRoute>
+        <ProtectedRoute
+          path="/wallet"
+          exact
+          component={AddFunds}
+        ></ProtectedRoute>
       </BrowserRouter>
     </div>
   );
@@ -72,15 +78,15 @@ export function ProtectedRoute({ component: Component, ...restOfProps }) {
   );
 }
 
-export function AdminProtectedRoute({ component: Component, ...restOfProps }) {
-  const isAuthenticated = localStorage.getItem("admin");
-  console.log("this", isAuthenticated);
-  return (
-    <Route
-      {...restOfProps}
-      render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/admin" />
-      }
-    />
-  );
-}
+// export function ProtectedRoute({ component: Component, ...restOfProps }) {
+//   const isAuthenticated = localStorage.getItem("admin");
+//   console.log("this", isAuthenticated);
+//   return (
+//     <Route
+//       {...restOfProps}
+//       render={(props) =>
+//         isAuthenticated ? <Component {...props} /> : <Redirect to="/admin" />
+//       }
+//     />
+//   );
+// }
