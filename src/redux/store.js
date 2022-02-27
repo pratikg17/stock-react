@@ -5,6 +5,7 @@ import { carsReducer } from "./reducers/carsReducer";
 import { stocksReducer } from "./reducers/stocksReducer";
 import { alertsReducer } from "./reducers/alertsReducer";
 import { userReducer } from "./reducers/userReducer";
+import { ordersReducer } from "./reducers/ordersReducer";
 
 // Actions - call api
 // Reducers - save the data
@@ -16,6 +17,7 @@ const rootReducers = combineReducers({
   alertsReducer,
   stocksReducer,
   userReducer,
+  ordersReducer,
 });
 
 const store = createStore(

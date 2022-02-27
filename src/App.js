@@ -8,6 +8,7 @@ import Home from "./pages/investor/Home";
 import WalletHistory from "./pages/investor/WalletHistory";
 import AddFunds from "./pages/investor/AddFunds";
 import WithdrawFunds from "./pages/investor/WithdrawFunds";
+import Orders from "./pages/investor/Orders";
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
@@ -69,6 +70,11 @@ function App() {
           path="/withdraw-funds"
           exact
           component={WithdrawFunds}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/orders"
+          exact
+          component={Orders}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>
