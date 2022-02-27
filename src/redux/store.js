@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { carsReducer } from "./reducers/carsReducer";
 import { stocksReducer } from "./reducers/stocksReducer";
 import { alertsReducer } from "./reducers/alertsReducer";
+import { userReducer } from "./reducers/userReducer";
 
 // Actions - call api
 // Reducers - save the data
@@ -14,6 +15,7 @@ const rootReducers = combineReducers({
   carsReducer,
   alertsReducer,
   stocksReducer,
+  userReducer,
 });
 
 const store = createStore(

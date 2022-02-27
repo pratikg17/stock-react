@@ -68,11 +68,11 @@ function DefaultLayout(props) {
 
               {user.isAdmin ? (
                 <Dropdown overlay={adminMenu} placement="bottomCenter">
-                  <Button>{user.username}</Button>
+                  <Button>{user.userName}</Button>
                 </Dropdown>
               ) : (
                 <Dropdown overlay={menu} placement="bottomCenter">
-                  <Button>{user.username}</Button>
+                  <Button>{user.userName}</Button>
                 </Dropdown>
               )}
             </div>

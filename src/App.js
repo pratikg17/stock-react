@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminLogin from "./pages/AdminLogin";
 import Home from "./pages/investor/Home";
-import AddFunds from "./pages/investor/AddFunds";
+import WalletHistory from "./pages/investor/WalletHistory";
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
@@ -56,7 +56,7 @@ function App() {
         <ProtectedRoute
           path="/wallet"
           exact
-          component={AddFunds}
+          component={WalletHistory}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>
@@ -72,7 +72,7 @@ export function ProtectedRoute({ component: Component, ...restOfProps }) {
     <Route
       {...restOfProps}
       render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/admin" />
+        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
   );

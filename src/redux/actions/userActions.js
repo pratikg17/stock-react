@@ -66,3 +66,58 @@ export const userRegister = (reqObj) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: true });
   }
 };
+
+export const getUserBalance = () => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  try {
+    let reqObj = {
+      userId: user,
+    };
+    console.log(reqObj);
+    const response = await axios.post(
+      "/api/v1/users/get-investor-balance",
+      reqObj,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+      }
+    );
+    console.log(response);
+    dispatch({ type: "GET_USER_BALANCE", payload: response.data.balance });
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error);
+    message.error("Something went wrong");
+    dispatch({ type: "LOADING", payload: true });
+  }
+};
+
+export const getUserWalletHistory = () => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  try {
+    let reqObj = {
+      userId: user,
+    };
+    console.log(reqObj);
+    const response = await axios.post(
+      "/api/v1/users/get-investor-wallet-transaction",
+      reqObj,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+      }
+    );
+    dispatch({ type: "GET_WALLET_TXN", payload: response.data.transaction });
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error);
+    message.error("Something went wrong");
+    dispatch({ type: "LOADING", payload: true });
+  }
+};
