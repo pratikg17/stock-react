@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { carsReducer } from "./reducers/carsReducer";
+
 import { stocksReducer } from "./reducers/stocksReducer";
 import { alertsReducer } from "./reducers/alertsReducer";
 import { userReducer } from "./reducers/userReducer";
 import { ordersReducer } from "./reducers/ordersReducer";
+import { adminReducer } from "./reducers/adminReducer";
 
 // Actions - call api
 // Reducers - save the data
@@ -13,11 +14,11 @@ import { ordersReducer } from "./reducers/ordersReducer";
 const composeEnhancers = composeWithDevTools({});
 
 const rootReducers = combineReducers({
-  carsReducer,
   alertsReducer,
   stocksReducer,
   userReducer,
   ordersReducer,
+  adminReducer,
 });
 
 const store = createStore(

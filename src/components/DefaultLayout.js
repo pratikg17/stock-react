@@ -46,9 +46,9 @@ function DefaultLayout(props) {
         <Menu.Item as="div" key="admin-hours">
           <Link to="/market-hours">Market Hours</Link>
         </Menu.Item>
-        <Menu.Item as="div" key="admin-holidays">
+        {/* <Menu.Item as="div" key="admin-holidays">
           <Link to="/market-holidays">Market Holidays</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item
           as="div"
           key="logout-admin"

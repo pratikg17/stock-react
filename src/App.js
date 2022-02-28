@@ -13,7 +13,6 @@ import Portfolio from "./pages/investor/Portfolio";
 import AddBuyOrders from "./pages/investor/AddBuyOrders";
 import AddSellOrders from "./pages/investor/AddSellOrders";
 
-import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
 import EditStock from "./pages/admin/EditStock";
@@ -49,11 +48,6 @@ function App() {
           path="/market-holidays"
           exact
           component={MarketHoliday}
-        ></ProtectedRoute>
-        <ProtectedRoute
-          path="/booking/:carid"
-          exact
-          component={BookingCar}
         ></ProtectedRoute>
         <Route path="/admin" exact component={AdminLogin}></Route>
         <Route path="/login" exact component={Login}></Route>
