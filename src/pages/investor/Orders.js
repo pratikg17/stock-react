@@ -13,11 +13,11 @@ function Orders() {
   const [totalOrders, setTotalOrders] = useState([]);
 
   const getOrderStatus = (status) => {
-    if (status == "PLACED") {
+    if (status === "PLACED") {
       return <Tag color="#2db7f5">{status}</Tag>;
-    } else if (status == "EXECUTED") {
+    } else if (status === "EXECUTED") {
       return <Tag color="#87d068">{status}</Tag>;
-    } else if (status == "PARTIALLY_EXECUTED") {
+    } else if (status === "PARTIALLY_EXECUTED") {
       return <Tag color="lime">{status}</Tag>;
     } else {
       return <Tag color="#f50">{status}</Tag>;
