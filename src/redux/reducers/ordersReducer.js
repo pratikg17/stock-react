@@ -15,6 +15,10 @@ export const ordersReducer = (state = initialData, action) => {
         ...state,
         portfolio: action.payload,
       };
+    case "CANCEL_ORDER":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

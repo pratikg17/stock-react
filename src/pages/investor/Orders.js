@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Space, Tag, Button } from "antd";
-import { getAllOrdersByUser } from "../../redux/actions/ordersActions";
+import {
+  getAllOrdersByUser,
+  cancelOrder,
+} from "../../redux/actions/ordersActions";
 import Moment from "react-moment";
 
 import { Link } from "react-router-dom";
@@ -117,16 +120,23 @@ function Orders() {
               EDIT
             </Button>
           </Link>
-          <Link to={`/edit-stocks/${record.stockId}`}>
-            <Button type="danger" disabled={record.orderStatus != "PLACED"}>
-              CANCEL
-            </Button>
-          </Link>
+
+          <Button
+            type="danger"
+            disabled={record.orderStatus != "PLACED"}
+            onClick={cancelOrderBtn.bind(this, record.ordersId)}
+          >
+            CANCEL
+          </Button>
         </Space>
       ),
     },
   ];
 
+  function cancelOrderBtn(orderId) {
+    console.log(orderId);
+    dispatch(cancelOrder(orderId));
+  }
   useEffect(() => {
     dispatch(getAllOrdersByUser());
   }, []);

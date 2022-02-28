@@ -41,6 +41,32 @@ export const getUserPortfolio = () => async (dispatch) => {
   }
 };
 
+export const cancelOrder = (orderId) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  dispatch({ type: "LOADING", payload: true });
+  // console.log("QQQ", reqObj);
+  try {
+    await axios.post(
+      "/api/v1/orders/delete-order",
+      {
+        orderId: orderId,
+      },
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+      }
+    );
+
+    dispatch({ type: "LOADING", payload: false });
+    dispatch(getAllOrdersByUser());
+    message.success("Order cancelled successfully");
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 // export const addStock = (reqObj) => async (dispatch) => {
 //   const token = localStorage.getItem("token");
 //   dispatch({ type: "LOADING", payload: true });
