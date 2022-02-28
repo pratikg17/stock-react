@@ -1,6 +1,7 @@
 const initialData = {
   orders: [],
   portfolio: [],
+  trades: [],
 };
 
 export const ordersReducer = (state = initialData, action) => {
@@ -14,6 +15,11 @@ export const ordersReducer = (state = initialData, action) => {
       return {
         ...state,
         portfolio: action.payload,
+      };
+    case "GET_ALL_USER_TRADES":
+      return {
+        ...state,
+        trades: action.payload,
       };
     case "CANCEL_ORDER":
       return {

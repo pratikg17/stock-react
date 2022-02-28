@@ -12,6 +12,7 @@ import Orders from "./pages/investor/Orders";
 import Portfolio from "./pages/investor/Portfolio";
 import AddBuyOrders from "./pages/investor/AddBuyOrders";
 import AddSellOrders from "./pages/investor/AddSellOrders";
+import TradeHistory from "./pages/investor/TradeHistory";
 
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
@@ -88,6 +89,11 @@ function App() {
           path="/add-sell-orders"
           exact
           component={AddSellOrders}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/trades"
+          exact
+          component={TradeHistory}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>
