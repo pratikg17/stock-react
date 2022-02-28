@@ -62,6 +62,20 @@ p {
   background-color: white;
 }
 
+.btn1-blue {
+  box-shadow: none !important;
+  background-color: white !important;
+  color: blue !important;
+  border: 1px solid blue;
+  padding: 5px !important;
+  outline: none !important;
+}
+
+.btn1-blue a{
+  color: blue !important;
+  background-color: white;
+}
+
 .btn1-red {
   box-shadow: none !important;
   background-color: white !important;

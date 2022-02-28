@@ -56,7 +56,16 @@ function WalletHistory() {
       title: "Type",
       dataIndex: "transaction_type",
       key: "transaction_type",
-      render: (text) => <Tag color="red">{text}</Tag>,
+
+      render: (text, record) => (
+        <Space size="middle">
+          {record.transaction_type == "DEBIT" ? (
+            <Tag color="red">{record.transaction_type}</Tag>
+          ) : (
+            <Tag color="green">{record.transaction_type}</Tag>
+          )}
+        </Space>
+      ),
     },
   ];
 
@@ -70,13 +79,13 @@ function WalletHistory() {
         <Col lg={20} sm={24}>
           <div className="d-flex justify-content-between align-items-center">
             <h3 className="mt-1 mr-2">Investor Wallet</h3>
-            <div className="btn1"> Available Funds ${walletBalance}</div>
+            <div className="btn1-blue"> Available Funds ${walletBalance}</div>
             <div className="d-flex justify-content-between align-items-center">
               <Space size="small">
-                <button className="btn1">
+                <button className="btn1-green">
                   <Link to={`/add-funds/`}>Add Funds</Link>
                 </button>
-                <button className="btn1">
+                <button className="btn1-red">
                   <Link to={`/withdraw-funds/`}>Withdraw Funds</Link>
                 </button>
               </Space>
