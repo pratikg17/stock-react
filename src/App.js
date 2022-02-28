@@ -11,6 +11,7 @@ import WithdrawFunds from "./pages/investor/WithdrawFunds";
 import Orders from "./pages/investor/Orders";
 import Portfolio from "./pages/investor/Portfolio";
 import AddBuyOrders from "./pages/investor/AddBuyOrders";
+import AddSellOrders from "./pages/investor/AddSellOrders";
 
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
@@ -88,6 +89,11 @@ function App() {
           path="/add-buy-orders"
           exact
           component={AddBuyOrders}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/add-sell-orders"
+          exact
+          component={AddSellOrders}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>

@@ -34,7 +34,7 @@ function Orders() {
   const columns = [
     {
       title: "Order Date",
-      dataIndex: "updatedAt",
+      dataIndex: "createdAt",
       render: (text) => <Moment format="MMM Do YYYY, h:mm:ss a">{text}</Moment>,
     },
     {
@@ -64,6 +64,15 @@ function Orders() {
           ) : (
             <div>{"$" + record.amount}</div>
           )}
+        </Space>
+      ),
+    },
+
+    {
+      title: "Current Price",
+      render: (text, record) => (
+        <Space size="middle">
+          <Tag color="green">${record.currentPrice}</Tag>
         </Space>
       ),
     },

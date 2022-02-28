@@ -89,6 +89,29 @@ export const addBuyOrderStock = (order) => async (dispatch) => {
   }
 };
 
+export const addSellOrderStock = (order) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  let reqObj = { ...order, userId: userId };
+  try {
+    await axios.post("/api/v1/orders/place-sell-order", reqObj, {
+      headers: {
+        Authorization: token, //the token is a variable which holds the token
+      },
+    });
+
+    dispatch({ type: "LOADING", payload: false });
+    message.success("New Order added successfully");
+    setTimeout(() => {
+      window.location.href = "/orders";
+    }, 500);
+  } catch (error) {
+    message.error(error.response.data.message);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 // export const editStock = (reqObj) => async (dispatch) => {
 //   const token = localStorage.getItem("token");
 //   dispatch({ type: "LOADING", payload: true });

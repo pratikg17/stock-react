@@ -32,7 +32,7 @@ function Portfolio() {
     let currentPrice = parseFloat(record.currentPrice).toFixed(4);
     let avgBuyPrice = parseFloat(record.avgBuyPrice).toFixed(4);
 
-    let change = ((currentPrice / avgBuyPrice / currentPrice) * 100).toFixed(2);
+    let change = ((currentPrice - avgBuyPrice / currentPrice) * 100).toFixed(2);
     if (currentPrice >= avgBuyPrice) {
       return <Tag color="green">+{change}%</Tag>;
     } else {

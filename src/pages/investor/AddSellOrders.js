@@ -5,13 +5,16 @@ import Spinner from "../../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAllStocks } from "../../redux/actions/stocksActions";
-import { addBuyOrderStock } from "../../redux/actions/ordersActions";
+import {
+  addSellOrderStock,
+  getUserPortfolio,
+} from "../../redux/actions/ordersActions";
 
-function AddBuyOrders(props) {
+function AddSellOrders(props) {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.alertsReducer);
   const { stocks } = useSelector((state) => state.stocksReducer);
-  const [totalStocks, setTotalStocks] = useState([]);
+  const { portfolio } = useSelector((state) => state.ordersReducer);
   const [selectedStockPrice, setSelectedStockPrice] = useState(0);
 
   const [form] = Form.useForm();
@@ -22,26 +25,26 @@ function AddBuyOrders(props) {
       quantity: parseFloat(values.quantity),
       amount: parseFloat(values.amount),
       stockId: values.stockName,
-      tradeType: "BUY",
+      tradeType: "SELL",
       expiryDate,
     };
 
-    dispatch(addBuyOrderStock(reqObj));
+    dispatch(addSellOrderStock(reqObj));
   }
-  useEffect(() => {
-    setTotalStocks(stocks);
-  }, [stocks]);
 
   useEffect(() => {
-    dispatch(getAllStocks());
+    dispatch(getUserPortfolio());
   }, []);
   function handleStockChange(value) {
-    const selectedStock = stocks.find((stock) => {
+    const selectedStock = portfolio.find((stock) => {
       return stock.stockId == value;
     });
-
+    console.log("selectedStock", selectedStock);
     form.setFieldsValue({
       amount: selectedStock.currentPrice,
+    });
+    form.setFieldsValue({
+      quantity: selectedStock.noOfStocks,
     });
   }
 
@@ -71,7 +74,7 @@ function AddBuyOrders(props) {
             layout="vertical"
             onFinish={onFinish}
           >
-            <h3>Add Buy Order</h3>
+            <h3>Add Sell Order</h3>
             <hr />
 
             <Form.Item
@@ -84,7 +87,7 @@ function AddBuyOrders(props) {
                 title
                 onChange={handleTradeTypeChange}
               >
-                <Select.Option value="BUY">BUY</Select.Option>
+                <Select.Option value="SELL">SELL</Select.Option>
               </Select>
             </Form.Item>
 
@@ -113,10 +116,10 @@ function AddBuyOrders(props) {
                 title
                 onChange={handleStockChange}
               >
-                {stocks.map((stock) => {
+                {portfolio.map((stock) => {
                   return (
                     <Select.Option value={stock.stockId}>
-                      {`${stock.tickerName} (${stock.stockName}) $${stock.currentPrice}`}
+                      {`${stock.tickerName} (${stock.stockName}) $${stock.currentPrice} #Qty ${stock.noOfStocks} `}
                     </Select.Option>
                   );
                 })}
@@ -148,14 +151,14 @@ function AddBuyOrders(props) {
                 style={{ width: "100%" }}
                 defaultValue={moment()}
                 disabledDate={(current) => {
-                  return moment().add(-1, "days") > current;
+                  return moment().add(-1, "days") >= current;
                 }}
                 onChange={onExpiryDateChange}
               />
             </Form.Item>
 
             <div className="text-right">
-              <button className="btn1">ADD BUY ORDER</button>
+              <button className="btn1">ADD SELL ORDER</button>
             </div>
           </Form>
         </Col>
@@ -164,4 +167,4 @@ function AddBuyOrders(props) {
   );
 }
 
-export default AddBuyOrders;
+export default AddSellOrders;
