@@ -9,6 +9,8 @@ import WalletHistory from "./pages/investor/WalletHistory";
 import AddFunds from "./pages/investor/AddFunds";
 import WithdrawFunds from "./pages/investor/WithdrawFunds";
 import Orders from "./pages/investor/Orders";
+import AddOrders from "./pages/investor/AddOrders";
+
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
 import AddStock from "./pages/admin/AddStock";
@@ -75,6 +77,11 @@ function App() {
           path="/orders"
           exact
           component={Orders}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/add-orders"
+          exact
+          component={AddOrders}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>
