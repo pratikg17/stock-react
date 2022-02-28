@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Row, Table, Space, Tag } from "antd";
+import { Col, Row, Table, Space, Tag, Button } from "antd";
 import { getAllOrdersByUser } from "../../redux/actions/ordersActions";
 import Moment from "react-moment";
 
@@ -106,6 +106,24 @@ function Orders() {
       title: "Order Expiry",
       dataIndex: "expiryDate",
       render: (text) => <Moment format="MMM Do YYYY, h:mm: a">{text}</Moment>,
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Space size="middle">
+          <Link to={`/edit-stocks/${record.stockId}`}>
+            <Button type="primary" disabled={record.orderStatus != "PLACED"}>
+              EDIT
+            </Button>
+          </Link>
+          <Link to={`/edit-stocks/${record.stockId}`}>
+            <Button type="danger" disabled={record.orderStatus != "PLACED"}>
+              CANCEL
+            </Button>
+          </Link>
+        </Space>
+      ),
     },
   ];
 
