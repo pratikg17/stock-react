@@ -10,7 +10,7 @@ import AddFunds from "./pages/investor/AddFunds";
 import WithdrawFunds from "./pages/investor/WithdrawFunds";
 import Orders from "./pages/investor/Orders";
 import Portfolio from "./pages/investor/Portfolio";
-import AddOrders from "./pages/investor/AddOrders";
+import AddBuyOrders from "./pages/investor/AddBuyOrders";
 
 import BookingCar from "./pages/BookingCar";
 import AdminHome from "./pages/admin/AdminHome";
@@ -85,9 +85,9 @@ function App() {
           component={Portfolio}
         ></ProtectedRoute>
         <ProtectedRoute
-          path="/add-orders"
+          path="/add-buy-orders"
           exact
-          component={AddOrders}
+          component={AddBuyOrders}
         ></ProtectedRoute>
       </BrowserRouter>
     </div>

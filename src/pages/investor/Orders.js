@@ -138,7 +138,7 @@ function Orders() {
             <h3 className="mt-1 mr-2">Investor Orders</h3>
             <div className="d-flex justify-content-between align-items-center">
               <button className="btn1">
-                <Link to={`/add-orders/`}>Add Orders</Link>
+                <Link to={`/add-buy-orders/`}>Add Orders</Link>
               </button>
             </div>
           </div>
