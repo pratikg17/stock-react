@@ -5,6 +5,7 @@ import Spinner from "../../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAllStocks } from "../../redux/actions/stocksActions";
+import { addBuyOrderStock } from "../../redux/actions/ordersActions";
 
 function AddBuyOrders(props) {
   const dispatch = useDispatch();
@@ -15,7 +16,17 @@ function AddBuyOrders(props) {
 
   const [form] = Form.useForm();
   function onFinish(values) {
-    // dispatch(addStock(values));
+    let expiryDate = values.expiryDate.toISOString();
+    let reqObj = {
+      ...values,
+      quantity: parseFloat(values.quantity),
+      amount: parseFloat(values.amount),
+      stockId: values.stockName,
+      tradeType: "BUY",
+      expiryDate,
+    };
+
+    dispatch(addBuyOrderStock(reqObj));
   }
   useEffect(() => {
     setTotalStocks(stocks);
@@ -34,16 +45,20 @@ function AddBuyOrders(props) {
     });
   }
 
-  function handleOrderTypeChange(value) {
+  function handleTradeTypeChange(value) {
     console.log(`selected ${value}`);
   }
 
-  function handleTradeTypeChange(value) {
+  function handleOrderTypeChange(value) {
     console.log(`selected ${value}`);
   }
 
   function onExpiryDateChange(date, dateString) {
     console.log(date, dateString);
+
+    form.setFieldsValue({
+      expiryDate: date,
+    });
   }
   return (
     <DefaultLayout>
@@ -60,30 +75,28 @@ function AddBuyOrders(props) {
             <hr />
 
             <Form.Item
-              name="orderType"
-              label="Order Type"
+              name="tradeType"
+              label="Trade Type"
               rules={[{ required: true, message: "Please select order type" }]}
             >
               <Select
                 style={{ float: "right" }}
                 title
-                onChange={handleOrderTypeChange}
-                defaultValue="BUY"
+                onChange={handleTradeTypeChange}
               >
                 <Select.Option value="BUY">BUY</Select.Option>
               </Select>
             </Form.Item>
 
             <Form.Item
-              name="tradeType"
-              label="Trade Type"
+              name="orderType"
+              label="Order Type"
               rules={[{ required: true, message: "Please select trade type" }]}
             >
               <Select
                 style={{ float: "right" }}
                 title
-                defaultValue="MARKET"
-                onChange={handleTradeTypeChange}
+                onChange={handleOrderTypeChange}
               >
                 <Select.Option value="MARKET">MARKET</Select.Option>
                 <Select.Option value="LIMIT">LIMIT</Select.Option>
@@ -129,9 +142,7 @@ function AddBuyOrders(props) {
             <Form.Item
               name="expiryDate"
               label="Order Expiry Date"
-              rules={[
-                { required: true, message: "Please input the listing price" },
-              ]}
+              rules={[{ required: true, message: "Please order expiry date" }]}
             >
               <DatePicker
                 style={{ width: "100%" }}

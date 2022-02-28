@@ -62,32 +62,32 @@ export const cancelOrder = (orderId) => async (dispatch) => {
     dispatch(getAllOrdersByUser());
     message.success("Order cancelled successfully");
   } catch (error) {
-    console.log(error);
     dispatch({ type: "LOADING", payload: false });
   }
 };
 
-// export const addStock = (reqObj) => async (dispatch) => {
-//   const token = localStorage.getItem("token");
-//   dispatch({ type: "LOADING", payload: true });
+export const addBuyOrderStock = (order) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  let reqObj = { ...order, userId: userId };
+  try {
+    await axios.post("/api/v1/orders/place-buy-order", reqObj, {
+      headers: {
+        Authorization: token, //the token is a variable which holds the token
+      },
+    });
 
-//   try {
-//     await axios.post("/api/v1/stocks/", reqObj, {
-//       headers: {
-//         Authorization: token, //the token is a variable which holds the token
-//       },
-//     });
-
-//     dispatch({ type: "LOADING", payload: false });
-//     message.success("New stock added successfully");
-//     setTimeout(() => {
-//       window.location.href = "/admin-home";
-//     }, 500);
-//   } catch (error) {
-//     console.log(error);
-//     dispatch({ type: "LOADING", payload: false });
-//   }
-// };
+    dispatch({ type: "LOADING", payload: false });
+    message.success("New Order added successfully");
+    setTimeout(() => {
+      window.location.href = "/orders";
+    }, 500);
+  } catch (error) {
+    message.error(error.response.data.message);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
 
 // export const editStock = (reqObj) => async (dispatch) => {
 //   const token = localStorage.getItem("token");

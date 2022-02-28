@@ -48,6 +48,35 @@ p {
   background-color: white;
 }
 
+.btn1-green {
+  box-shadow: none !important;
+  background-color: white !important;
+  color: green !important;
+  border: 1px solid green;
+  padding: 5px !important;
+  outline: none !important;
+}
+
+.btn1-green a{
+  color: green !important;
+  background-color: white;
+}
+
+.btn1-red {
+  box-shadow: none !important;
+  background-color: white !important;
+  color: red !important;
+  border: 1px solid red;
+  padding: 5px !important;
+  outline: none !important;
+}
+
+.btn1-red a{
+  color: red !important;
+  background-color: white;
+}
+
+
 
 .btn:focus {
   border: none !important;

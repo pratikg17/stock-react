@@ -34,7 +34,7 @@ function Orders() {
   const columns = [
     {
       title: "Order Date",
-      dataIndex: "created_at",
+      dataIndex: "updatedAt",
       render: (text) => <Moment format="MMM Do YYYY, h:mm:ss a">{text}</Moment>,
     },
     {
@@ -115,11 +115,11 @@ function Orders() {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Link to={`/edit-stocks/${record.stockId}`}>
+          {/* <Link to={`/edit-buy-order/${record.stockId}`}>
             <Button type="primary" disabled={record.orderStatus != "PLACED"}>
               EDIT
             </Button>
-          </Link>
+          </Link> */}
 
           <Button
             type="danger"
@@ -147,9 +147,14 @@ function Orders() {
           <div className="d-flex justify-content-between align-items-center">
             <h3 className="mt-1 mr-2">Investor Orders</h3>
             <div className="d-flex justify-content-between align-items-center">
-              <button className="btn1">
-                <Link to={`/add-buy-orders/`}>Add Orders</Link>
-              </button>
+              <Space size="middle">
+                <button className="btn1-red">
+                  <Link to={`/add-sell-orders/`}>Add Sell Orders</Link>
+                </button>
+                <button className="btn1-green">
+                  <Link to={`/add-buy-orders/`}>Add Buy Orders</Link>
+                </button>
+              </Space>
             </div>
           </div>
         </Col>
