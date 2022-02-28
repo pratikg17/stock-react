@@ -9,6 +9,7 @@ import WalletHistory from "./pages/investor/WalletHistory";
 import AddFunds from "./pages/investor/AddFunds";
 import WithdrawFunds from "./pages/investor/WithdrawFunds";
 import Orders from "./pages/investor/Orders";
+import Portfolio from "./pages/investor/Portfolio";
 import AddOrders from "./pages/investor/AddOrders";
 
 import BookingCar from "./pages/BookingCar";
@@ -79,6 +80,11 @@ function App() {
           component={Orders}
         ></ProtectedRoute>
         <ProtectedRoute
+          path="/portfolio"
+          exact
+          component={Portfolio}
+        ></ProtectedRoute>
+        <ProtectedRoute
           path="/add-orders"
           exact
           component={AddOrders}
@@ -102,16 +108,3 @@ export function ProtectedRoute({ component: Component, ...restOfProps }) {
     />
   );
 }
-
-// export function ProtectedRoute({ component: Component, ...restOfProps }) {
-//   const isAuthenticated = localStorage.getItem("admin");
-//   console.log("this", isAuthenticated);
-//   return (
-//     <Route
-//       {...restOfProps}
-//       render={(props) =>
-//         isAuthenticated ? <Component {...props} /> : <Redirect to="/admin" />
-//       }
-//     />
-//   );
-// }

@@ -1,5 +1,6 @@
 const initialData = {
   orders: [],
+  portfolio: [],
 };
 
 export const ordersReducer = (state = initialData, action) => {
@@ -8,6 +9,11 @@ export const ordersReducer = (state = initialData, action) => {
       return {
         ...state,
         orders: action.payload,
+      };
+    case "GET_PORTFOLIO":
+      return {
+        ...state,
+        portfolio: action.payload,
       };
     default:
       return state;

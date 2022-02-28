@@ -15,6 +15,7 @@ export const userReducer = (state = initialData, action) => {
         ...state,
         walletHistory: action.payload,
       };
+
     default:
       return state;
   }

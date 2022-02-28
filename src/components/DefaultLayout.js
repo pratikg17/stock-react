@@ -10,6 +10,9 @@ function DefaultLayout(props) {
         <Menu.Item as="div" key="home">
           <Link to="/">Home</Link>
         </Menu.Item>
+        <Menu.Item as="div" key="investor-portfolio">
+          <Link to="/portfolio">Portfolio</Link>
+        </Menu.Item>
         <Menu.Item as="div" key="investor-orders">
           <Link to="/orders">Orders</Link>
         </Menu.Item>
