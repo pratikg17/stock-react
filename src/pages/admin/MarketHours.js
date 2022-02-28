@@ -15,8 +15,8 @@ function MarketHours() {
 
   function onFinish(values) {
     console.log(values);
-    let startTime = values.startTime.format("h:mm:ss");
-    let endTime = values.endTime.format("h:mm:ss");
+    let startTime = values.startTime.format("HH:mm:ss");
+    let endTime = values.endTime.format("HH:mm:ss");
     let timeId = marketHours.timeId;
 
     let req = {

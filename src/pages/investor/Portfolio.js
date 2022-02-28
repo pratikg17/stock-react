@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Row, Table, Space, Tag, Button, FundOutlined } from "antd";
+import { Col, Row, Table, Space, Tag } from "antd";
+import { getUserPortfolio } from "../../redux/actions/ordersActions";
 
-import {
-  getAllOrdersByUser,
-  getUserPortfolio,
-} from "../../redux/actions/ordersActions";
-import Moment from "react-moment";
-
-import { Link } from "react-router-dom";
 function Portfolio() {
   const dispatch = useDispatch();
-  const { orders, portfolio } = useSelector((state) => state.ordersReducer);
-
-  const [totalOrders, setTotalOrders] = useState([]);
-
-  const getOrderStatus = (status) => {
-    if (status === "PLACED") {
-      return <Tag color="#2db7f5">{status}</Tag>;
-    } else if (status === "EXECUTED") {
-      return <Tag color="#87d068">{status}</Tag>;
-    } else if (status === "PARTIALLY_EXECUTED") {
-      return <Tag color="lime">{status}</Tag>;
-    } else {
-      return <Tag color="#f50">{status}</Tag>;
-    }
-  };
+  const { portfolio } = useSelector((state) => state.ordersReducer);
 
   const getPercentChange = (record) => {
     let currentPrice = parseFloat(record.currentPrice).toFixed(4);
@@ -38,7 +18,7 @@ function Portfolio() {
     if (currentPrice >= avgBuyPrice) {
       return <Tag color="green">+{change}%</Tag>;
     } else {
-      return <Tag color="red">-{change}%</Tag>;
+      return <Tag color="red">{change}%</Tag>;
     }
   };
 
@@ -119,6 +99,7 @@ function Portfolio() {
   useEffect(() => {
     dispatch(getUserPortfolio());
   }, []);
+
   return (
     <DefaultLayout>
       <Row justify="center" gutter={16} className="mt-4">

@@ -56,7 +56,7 @@ function DefaultLayout(props) {
             localStorage.removeItem("user");
             localStorage.removeItem("admin");
             localStorage.removeItem("token");
-            window.location.href = "/admin-login";
+            window.location.href = "/admin";
           }}
         >
           <li style={{ color: "orangered" }}>Logout</li>
