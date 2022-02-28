@@ -11,14 +11,17 @@ function Portfolio() {
   const getPercentChange = (record) => {
     let currentPrice = parseFloat(record.currentPrice).toFixed(4);
     let avgBuyPrice = parseFloat(record.avgBuyPrice).toFixed(4);
-
+    console.log("avgBuyPrice", avgBuyPrice);
+    console.log("currentPrice", currentPrice);
     let change = (((currentPrice - avgBuyPrice) / currentPrice) * 100).toFixed(
       2
     );
-    if (currentPrice >= avgBuyPrice) {
+    console.log("change", change);
+
+    if (parseFloat(currentPrice) >= parseFloat(avgBuyPrice)) {
       return <Tag color="green">+{change}%</Tag>;
     } else {
-      return <Tag color="red">{change}%</Tag>;
+      return <Tag color="red">-{change}%</Tag>;
     }
   };
 

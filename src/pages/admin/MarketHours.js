@@ -53,10 +53,10 @@ function MarketHours() {
             <h3>Change Market Hours / Schedule</h3>
             <hr />
             <Form.Item name="startTime" label="Start Time">
-              <TimePicker size="large" />
+              <TimePicker size="large" format={"HH:mm"} />
             </Form.Item>
             <Form.Item name="endTime" label="End Time">
-              <TimePicker size="large" />
+              <TimePicker size="large" format={"HH:mm"} />
             </Form.Item>
 
             <div className="text-right">
