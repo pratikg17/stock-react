@@ -1,18 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Space, Tag } from "antd";
 import { getUserPortfolio } from "../../redux/actions/ordersActions";
+import { getUserBalance } from "../../redux/actions/userActions";
 
 function Portfolio() {
   const dispatch = useDispatch();
   const { portfolio } = useSelector((state) => state.ordersReducer);
+  const { walletBalance } = useSelector((state) => state.userReducer);
+
+  const [totalWalletBalance, setTotalWalletBalance] = useState([]);
+
+  useEffect(() => {
+    setTotalWalletBalance(totalWalletBalance);
+  }, [totalWalletBalance]);
 
   const getPercentChange = (record) => {
     let currentPrice = parseFloat(record.currentPrice).toFixed(4);
     let avgBuyPrice = parseFloat(record.avgBuyPrice).toFixed(4);
-    console.log("avgBuyPrice", avgBuyPrice);
-    console.log("currentPrice", currentPrice);
+
     let change = (((currentPrice - avgBuyPrice) / currentPrice) * 100).toFixed(
       2
     );
@@ -21,7 +28,55 @@ function Portfolio() {
     if (parseFloat(currentPrice) >= parseFloat(avgBuyPrice)) {
       return <Tag color="green">+{change}%</Tag>;
     } else {
-      return <Tag color="red">-{change}%</Tag>;
+      return <Tag color="red">{change}%</Tag>;
+    }
+  };
+
+  const getPortfolio = () => {
+    if (portfolio.length != 0) {
+      console.log(portfolio);
+      // let investedAmount = portfolio.forEach((pd) => {
+      //   total += parseFloat(pd.avgBuyPrice) * parseFloat(pd.noOfStocks);
+      // });
+
+      let investedAmount = 0;
+      let currentNetworth = 0;
+      for (let i = 0; i < portfolio.length; i++) {
+        let pd = portfolio[i];
+        investedAmount +=
+          parseFloat(pd.avgBuyPrice) * parseFloat(pd.noOfStocks);
+        currentNetworth +=
+          parseFloat(pd.currentPrice) * parseFloat(pd.noOfStocks);
+      }
+
+      let className = "btn1-blue";
+      if (currentNetworth > investedAmount) {
+        className = "btn1-green";
+      } else {
+        className = "btn1-red";
+      }
+      let returnPercent =
+        ((currentNetworth - investedAmount) / currentNetworth) * 100;
+      console.log("returnPercent", returnPercent);
+
+      let totalPortfolio = (
+        investedAmount +
+        currentNetworth +
+        walletBalance
+      ).toFixed(2);
+
+      return (
+        <React.Fragment>
+          <div className="btn1-blue"> Available Funds ${walletBalance}</div>
+          <div className={className}>
+            Portfolio ${currentNetworth.toFixed(2)}
+          </div>
+          <div className={className}>Overall Portfolio ${totalPortfolio}</div>
+          <div className={className}>Returns {returnPercent.toFixed(2)}%</div>
+        </React.Fragment>
+      );
+    } else {
+      return null;
     }
   };
 
@@ -101,6 +156,7 @@ function Portfolio() {
 
   useEffect(() => {
     dispatch(getUserPortfolio());
+    dispatch(getUserBalance());
   }, []);
 
   return (
@@ -109,6 +165,8 @@ function Portfolio() {
         <Col lg={20} sm={24}>
           <div className="d-flex justify-content-between align-items-center">
             <h3 className="mt-1 mr-2">Investor Portfolio</h3>
+
+            {getPortfolio()}
             <div className="d-flex justify-content-between align-items-center"></div>
           </div>
         </Col>
