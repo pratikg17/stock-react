@@ -101,14 +101,14 @@ function Home() {
       {loading == true && <Spinner />}
 
       <Row gutter={[16, 8]} className="mt-3">
-        <marquee scrollamount={8}> {getMarketCap()} </marquee>
+        <marquee scrollamount={5}> {getMarketCap()} </marquee>
         <Col lg={24}>
           <h4>Stocks</h4>
 
           <div className="mt-1 mr-3 d-flex justify-content-between flex-row flex-wrap">
             {stocks.map((stock) => {
               return (
-                <Col lg={12} className="mb-2">
+                <Col lg={12} className="mb-2 mt-2">
                   <div className="p-2 bs1">
                     <div className=" d-flex align-items-center justify-content-around">
                       <div className="text-left pl-2">
@@ -122,18 +122,6 @@ function Home() {
                             {"$" + parseFloat(stock.currentPrice).toFixed(2)}
                           </Tag>
                         </div>
-                        {/* <div className="d-flex justify-content-between align-items-center align-content-center ">
-                          <h6>Daily High</h6>
-                          <Tag color="green">
-                            {"$" + parseFloat(stock.dailyHigh).toFixed(2)}
-                          </Tag>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center align-content-center ">
-                          <h6>Daily Low</h6>
-                          <Tag color="red">
-                            {"$" + parseFloat(stock.dailyLow).toFixed(2)}
-                          </Tag>
-                        </div> */}
 
                         <div className="d-flex justify-content-between align-items-center align-content-center ">
                           <h6>Volume</h6>
@@ -160,7 +148,6 @@ function Home() {
 
                       <div className="d-flex justify-content-around flex-column">
                         <button className="btn1-green mt-2">
-                          {/* <Link to={`/booking/${car._id}`}>Book Now</Link> */}
                           <Link to={`/add-buy-orders/`}>BUY</Link>
                         </button>
                         <button className="btn1-red mt-2 ">
