@@ -61,7 +61,7 @@ function Home() {
         let iconTag = "fa-solid fa-arrow-trend-up";
 
         let percentChange =
-          ((parseFloat(s.currentPrice) - parseFloat(s.openPrice)) /
+          ((parseFloat(s.currentPrice) - parseFloat(s.closePrice)) /
             parseFloat(s.currentPrice)) *
           100;
         if (percentChange < 0) {
