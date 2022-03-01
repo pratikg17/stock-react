@@ -1,18 +1,21 @@
 import { message } from "antd";
 import axios from "axios";
-
+import { baseUrl } from "../../config";
 export const getAllOrdersByUser = () => async (dispatch) => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user")).userId;
 
   dispatch({ type: "LOADING", payload: true });
   try {
-    const response = await axios.get("/api/v1/orders/get-all-user-orders", {
-      headers: {
-        Authorization: token, //the token is a variable which holds the token
-      },
-      params: { user_id: user },
-    });
+    const response = await axios.get(
+      `${baseUrl}/api/v1/orders/get-all-user-orders`,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+        params: { user_id: user },
+      }
+    );
     console.log(response);
     dispatch({ type: "GET_ALL_USER_ORDERS", payload: response.data.orders });
     dispatch({ type: "LOADING", payload: false });
@@ -27,12 +30,15 @@ export const getAllTradesByUser = () => async (dispatch) => {
 
   dispatch({ type: "LOADING", payload: true });
   try {
-    const response = await axios.get("/api/v1/orders/get-all-user-trades", {
-      headers: {
-        Authorization: token, //the token is a variable which holds the token
-      },
-      params: { user_id: user },
-    });
+    const response = await axios.get(
+      `${baseUrl}/api/v1/orders/get-all-user-trades`,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+        params: { user_id: user },
+      }
+    );
     console.log("TRADES", response);
     dispatch({ type: "GET_ALL_USER_TRADES", payload: response.data.trades });
     dispatch({ type: "LOADING", payload: false });
@@ -47,13 +53,15 @@ export const getUserPortfolio = () => async (dispatch) => {
 
   dispatch({ type: "LOADING", payload: true });
   try {
-    const response = await axios.get("/api/v1/orders/get-user-portfolio", {
-      headers: {
-        Authorization: token, //the token is a variable which holds the token
-      },
-      params: { user_id: user },
-    });
-    console.log(response);
+    const response = await axios.get(
+      `${baseUrl}/api/v1/orders/get-user-portfolio`,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+        params: { user_id: user },
+      }
+    );
     dispatch({ type: "GET_PORTFOLIO", payload: response.data.trades });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
@@ -66,7 +74,7 @@ export const cancelOrder = (orderId) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
   try {
     await axios.post(
-      "/api/v1/orders/delete-order",
+      `${baseUrl}/api/v1/orders/delete-order`,
       {
         orderId: orderId,
       },
@@ -91,7 +99,7 @@ export const addBuyOrderStock = (order) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
   let reqObj = { ...order, userId: userId };
   try {
-    await axios.post("/api/v1/orders/place-buy-order", reqObj, {
+    await axios.post(`${baseUrl}/api/v1/orders/place-buy-order`, reqObj, {
       headers: {
         Authorization: token, //the token is a variable which holds the token
       },
@@ -114,7 +122,7 @@ export const addSellOrderStock = (order) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
   let reqObj = { ...order, userId: userId };
   try {
-    await axios.post("/api/v1/orders/place-sell-order", reqObj, {
+    await axios.post(`${baseUrl}/api/v1/orders/place-sell-order`, reqObj, {
       headers: {
         Authorization: token, //the token is a variable which holds the token
       },

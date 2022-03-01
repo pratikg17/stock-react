@@ -1,11 +1,15 @@
 import axios from "axios";
 import { message } from "antd";
 import jwt from "jwt-decode";
+import { baseUrl } from "../../config";
 export const userLogin = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    const response = await axios.post("/api/v1/users/investor-login", reqObj);
+    const response = await axios.post(
+      `${baseUrl}/api/v1/users/investor-login`,
+      reqObj
+    );
 
     const jwtToken = response.data.token;
     const decodedJwt = jwt(jwtToken);
@@ -29,7 +33,10 @@ export const adminLogin = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    const response = await axios.post("/api/v1/users/admin-login", reqObj);
+    const response = await axios.post(
+      `${baseUrl}/api/v1/users/admin-login`,
+      reqObj
+    );
 
     const jwtToken = response.data.token;
     const decodedJwt = jwt(jwtToken);
@@ -53,7 +60,7 @@ export const userRegister = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    const response = await axios.post("/api/v1/users/", reqObj);
+    const response = await axios.post(`${baseUrl}/api/v1/users/`, reqObj);
     message.success("Registration Sucessfull");
     setTimeout(() => {
       window.location.href = "/login";
@@ -77,7 +84,7 @@ export const getUserBalance = () => async (dispatch) => {
     };
     console.log(reqObj);
     const response = await axios.post(
-      "/api/v1/users/get-investor-balance",
+      `${baseUrl}/api/v1/users/get-investor-balance`,
       reqObj,
       {
         headers: {
@@ -85,7 +92,6 @@ export const getUserBalance = () => async (dispatch) => {
         },
       }
     );
-    console.log(response);
     dispatch({ type: "GET_USER_BALANCE", payload: response.data.balance });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
@@ -105,7 +111,7 @@ export const getUserWalletHistory = () => async (dispatch) => {
     };
     console.log(reqObj);
     const response = await axios.post(
-      "/api/v1/users/get-investor-wallet-transaction",
+      `${baseUrl}/api/v1/users/get-investor-wallet-transaction`,
       reqObj,
       {
         headers: {
@@ -132,15 +138,11 @@ export const addInvestorFunds = (data) => async (dispatch) => {
       userId: user,
     };
     console.log(reqObj);
-    const response = await axios.post(
-      "/api/v1/users/add-investor-funds",
-      reqObj,
-      {
-        headers: {
-          Authorization: token, //the token is a variable which holds the token
-        },
-      }
-    );
+    await axios.post(`${baseUrl}/api/v1/users/add-investor-funds`, reqObj, {
+      headers: {
+        Authorization: token, //the token is a variable which holds the token
+      },
+    });
     message.success("Funds added  successfully");
     setTimeout(() => {
       window.location.href = "/wallet";
@@ -162,8 +164,8 @@ export const withdrawInvestorFunds = (data) => async (dispatch) => {
       userId: user,
     };
     console.log(reqObj);
-    const response = await axios.post(
-      "/api/v1/users/withdraw-investor-funds",
+    await axios.post(
+      `${baseUrl}/api/v1/users/withdraw-investor-funds`,
       reqObj,
       {
         headers: {

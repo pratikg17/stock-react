@@ -59,11 +59,7 @@ function Portfolio() {
         ((currentNetworth - investedAmount) / currentNetworth) * 100;
       console.log("returnPercent", returnPercent);
 
-      let totalPortfolio = (
-        investedAmount +
-        currentNetworth +
-        walletBalance
-      ).toFixed(2);
+      let totalPortfolio = (currentNetworth + walletBalance).toFixed(2);
 
       return (
         <React.Fragment>

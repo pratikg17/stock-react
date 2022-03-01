@@ -5,7 +5,7 @@ import { Row, Col, Space, Tag } from "antd";
 import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
 import { getAllStocks } from "../../redux/actions/stocksActions";
-
+import { webSocketUrl } from "../../config";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
 function Home() {
@@ -15,7 +15,7 @@ function Home() {
   const [stocksPrice, setStocksPrice] = useState([]);
 
   const [socketUrl, setSocketUrl] = useState(
-    "ws://localhost:5000/api/v1/stocks/get-live-stocks"
+    `${webSocketUrl}/api/v1/stocks/get-live-stocks`
   );
   const [messageHistory, setMessageHistory] = useState([]);
   const [isMarketOpen, setMarketOpen] = useState(false);
