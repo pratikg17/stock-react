@@ -24,10 +24,12 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "serve": "^13.0.2",
     "socket.io-client": "^4.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start:prod" : "serve -s build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,5 +53,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://localhost:5000/",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
