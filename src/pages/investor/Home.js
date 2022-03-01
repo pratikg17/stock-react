@@ -46,8 +46,31 @@ function Home() {
     dispatch(getAllStocks());
   }, []);
 
-  console.log(stocks);
-  console.log("stocksPrice", stocksPrice);
+  const getMarketCap = () => {
+    if (stocks.length != 0) {
+      console.log(stocks);
+
+      let marketCap = 0;
+      let totalVol = 0;
+      for (let i = 0; i < stocks.length; i++) {
+        let s = stocks[i];
+        marketCap += parseInt(s.volume) * parseFloat(s.currentPrice);
+        totalVol += parseInt(s.volume);
+      }
+
+      return (
+        <Space className="mb-2" size="middle">
+          <Tag color="green">
+            {" "}
+            Market Capitalization ${marketCap.toFixed(2)}
+          </Tag>
+          <Tag color="green"> Market Volume #{totalVol}</Tag>
+        </Space>
+      );
+    } else {
+      return null;
+    }
+  };
   return (
     <DefaultLayout>
       {loading == true && <Spinner />}
@@ -57,9 +80,11 @@ function Home() {
         </div>
       </Row> */}
 
-      <Row gutter={[16, 8]} className="mt-5">
+      <Row gutter={[16, 8]} className="mt-3">
+        <marquee> {getMarketCap()} </marquee>
         <Col lg={12}>
           <h4>Stocks</h4>
+
           <div className="mt-1 mr-3 d-flex justify-content-between flex-row flex-wrap">
             {stocks.map((stock) => {
               return (
@@ -102,8 +127,24 @@ function Home() {
                           <Space size="middle">
                             Volume
                             <Tag color="blue">
-                              {+parseFloat(stock.volume).toFixed(0)}
+                              {parseFloat(stock.volume).toFixed(0)}
                             </Tag>
+                          </Space>
+                        </p>
+                        <p>
+                          <Space size="middle">
+                            <div>
+                              OPEN &nbsp;
+                              <Tag color="blue">
+                                {"$" + parseFloat(stock.openPrice).toFixed(2)}
+                              </Tag>
+                            </div>
+                            <div>
+                              CLOSE &nbsp;
+                              <Tag color="blue">
+                                {"$" + parseFloat(stock.closePrice).toFixed(2)}
+                              </Tag>
+                            </div>
                           </Space>
                         </p>
                       </div>
