@@ -67,7 +67,7 @@ function AdminHome() {
         </Col>
         <Space></Space>
         <Col lg={20} sm={24}>
-          <Table dataSource={totalStocks} columns={columns} />;
+          <Table dataSource={totalStocks} columns={columns} />
         </Col>
       </Row>
     </DefaultLayout>
