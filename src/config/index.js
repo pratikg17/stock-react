@@ -5,7 +5,7 @@ urls.set("localhost", "http://localhost:5000");
 
 urls.set(
   "stockverse-react.herokuapp.com",
-  "https://intel-stock-server.herokuapp.com/"
+  "https://intel-stock-server.herokuapp.com"
 );
 webSocketUrls.set("localhost", "ws://localhost:5000");
 
