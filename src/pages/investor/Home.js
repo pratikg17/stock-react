@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { getAllStocks } from "../../redux/actions/stocksActions";
 // import io from "socket.io-client";
 import useWebSocket, { ReadyState } from "react-use-websocket";
+import Portfolio from "./Portfolio";
 
 function Home() {
   const { loading } = useSelector((state) => state.alertsReducer);
@@ -162,7 +163,85 @@ function Home() {
             })}
           </div>
         </Col>
-        <Col lg={12}></Col>
+        <Col lg={12}>
+          <h4>Portfolio</h4>
+          <div className="mt-1 mr-3 d-flex justify-content-between flex-row flex-wrap">
+            {stocks.map((stock) => {
+              return (
+                <Col lg={12} className="mb-2">
+                  <div className="car p-2 bs1">
+                    <div className=" d-flex align-items-center justify-content-between">
+                      <div className="text-left pl-2">
+                        <p>
+                          <Space size="middle">
+                            <b>{stock.tickerName}</b>
+                            <Tag color="orange">{stock.stockName}</Tag>
+                          </Space>
+                        </p>
+                        <p></p>
+                        <p>
+                          <Space size="middle">
+                            <div>Live Price</div>
+                            <Tag color="green">
+                              {"$" + parseFloat(stock.currentPrice).toFixed(2)}
+                            </Tag>
+                          </Space>
+                        </p>
+                        <p>
+                          <Space size="middle">
+                            <div>Daily High</div>
+                            <Tag color="green">
+                              {"$" + parseFloat(stock.dailyHigh).toFixed(2)}
+                            </Tag>
+                          </Space>
+                        </p>
+                        <p>
+                          <Space size="middle">
+                            Daily Low
+                            <Tag color="red">
+                              {"$" + parseFloat(stock.dailyLow).toFixed(2)}
+                            </Tag>
+                          </Space>
+                        </p>
+                        <p>
+                          <Space size="middle">
+                            Volume
+                            <Tag color="blue">
+                              {parseFloat(stock.volume).toFixed(0)}
+                            </Tag>
+                          </Space>
+                        </p>
+                        <p>
+                          <Space size="middle">
+                            <div>
+                              OPEN &nbsp;
+                              <Tag color="blue">
+                                {"$" + parseFloat(stock.openPrice).toFixed(2)}
+                              </Tag>
+                            </div>
+                            <div>
+                              CLOSE &nbsp;
+                              <Tag color="blue">
+                                {"$" + parseFloat(stock.closePrice).toFixed(2)}
+                              </Tag>
+                            </div>
+                          </Space>
+                        </p>
+                      </div>
+
+                      <div>
+                        <button className="btn1-green mr-2">
+                          {/* <Link to={`/booking/${car._id}`}>Book Now</Link> */}
+                          <Link>BUY</Link>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              );
+            })}
+          </div>
+        </Col>
       </Row>
     </DefaultLayout>
   );
