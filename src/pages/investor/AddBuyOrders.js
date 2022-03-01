@@ -15,6 +15,7 @@ function AddBuyOrders(props) {
   const [selectedStockPrice, setSelectedStockPrice] = useState(0);
 
   const [form] = Form.useForm();
+
   function onFinish(values) {
     let expiryDate = values.expiryDate.toISOString();
     let reqObj = {
@@ -28,6 +29,7 @@ function AddBuyOrders(props) {
 
     dispatch(addBuyOrderStock(reqObj));
   }
+
   useEffect(() => {
     setTotalStocks(stocks);
   }, [stocks]);
@@ -146,7 +148,6 @@ function AddBuyOrders(props) {
             >
               <DatePicker
                 style={{ width: "100%" }}
-                defaultValue={moment()}
                 disabledDate={(current) => {
                   return moment().add(-1, "days") > current;
                 }}

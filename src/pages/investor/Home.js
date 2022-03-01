@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Row, Col, Space, Tag } from "antd";
+import { Row, Col, Space, Tag } from "antd";
 import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
 import { getAllStocks } from "../../redux/actions/stocksActions";
@@ -101,7 +101,7 @@ function Home() {
       {loading == true && <Spinner />}
 
       <Row gutter={[16, 8]} className="mt-3">
-        <marquee> {getMarketCap()} </marquee>
+        <marquee scrollamount={8}> {getMarketCap()} </marquee>
         <Col lg={24}>
           <h4>Stocks</h4>
 

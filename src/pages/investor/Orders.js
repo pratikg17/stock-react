@@ -117,7 +117,7 @@ function Orders() {
     {
       title: "Order Expiry",
       dataIndex: "expiryDate",
-      render: (text) => <Moment format="MMM Do YYYY, h:mm: a">{text}</Moment>,
+      render: (text) => <Moment format="MMM Do YYYY">{text}</Moment>,
     },
     {
       title: "Action",

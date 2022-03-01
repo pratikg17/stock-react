@@ -149,7 +149,6 @@ function AddSellOrders(props) {
             >
               <DatePicker
                 style={{ width: "100%" }}
-                defaultValue={moment()}
                 disabledDate={(current) => {
                   return moment().add(-1, "days") >= current;
                 }}
