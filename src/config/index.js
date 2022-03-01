@@ -11,7 +11,7 @@ webSocketUrls.set("localhost", "ws://localhost:5000");
 
 webSocketUrls.set(
   "stockverse-react.herokuapp.com",
-  "wss://intel-stock-server.herokuapp.com/"
+  "wss://intel-stock-server.herokuapp.com"
 );
 
 export const baseUrl = urls.get(window.location.hostname);
