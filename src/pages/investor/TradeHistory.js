@@ -100,7 +100,7 @@ function Orders() {
         </Col>
         <Space></Space>
         <Col lg={20} sm={24}>
-          <Table dataSource={trades} columns={columns} pagination={false} />;
+          <Table dataSource={trades} columns={columns} pagination={false} />
         </Col>
       </Row>
     </DefaultLayout>

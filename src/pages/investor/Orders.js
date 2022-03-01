@@ -169,7 +169,7 @@ function Orders() {
         </Col>
         <Space></Space>
         <Col lg={20} sm={24}>
-          <Table dataSource={orders} columns={columns} pagination={false} />;
+          <Table dataSource={orders} columns={columns} pagination={false} />
         </Col>
       </Row>
     </DefaultLayout>
